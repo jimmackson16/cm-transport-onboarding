@@ -23,10 +23,9 @@ export type CreateEventParams = {
     seatInfo: string
     location: string
     startDateTime: Date
-    ticketUrl?:string
+    ticketUrl:string
     price: string
     quantity: string
-    url?: string
   }
   path: string
 }
@@ -39,10 +38,9 @@ export type UpdateEventParams = {
     seatInfo: string
     location: string
     startDateTime: Date
-    ticketUrl?: string
+    ticketUrl: string
     price: string
     quantity: string
-    url?: string
   }
   path: string
 }
@@ -73,7 +71,6 @@ export type Event = {
   location: string
   startDateTime: Date
   endDateTime: Date
-  url: string
   organizer: {
     _id: string
     firstName: string

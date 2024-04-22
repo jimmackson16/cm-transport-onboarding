@@ -9,8 +9,7 @@ export interface IEvent extends Document {
   startDateTime: Date;
   ticketUrl:string;
   price: string;
-  quantity: number;
-  url?: string;
+  quantity: string;
   seller: { _id: string, firstName: string, lastName: string }
 }
 
@@ -20,10 +19,9 @@ const EventSchema = new Schema({
   location: { type: String },
   createdAt: { type: Date, default: Date.now },
   startDateTime: { type: Date, default: Date.now },
-  ticketUrl: {type: String,required:false},
+  ticketUrl: {type: String },
   price: { type: String },
-  quantity: {type:Number},
-  url: { type: String },
+  quantity: {type: String },
   seller: { type: Schema.Types.ObjectId, ref: 'User' },
 })
 

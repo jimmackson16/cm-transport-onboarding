@@ -135,10 +135,8 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
           render={({ field }) => (
             <FormItem className='w-full'>
               <FormControl>
-                <Input placeholder="Please enter the amount of tickets available" {...field} 
-                className='input-field'
-                type="number"
-                />
+              <Input type="number" placeholder="Price" {...field} className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -171,7 +169,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormControl className='h-72'>
                 <FileUploader 
                 onFieldChange={field.onChange}
-                imageUrl={field.value}
+                ticketUrl={field.value}
                 setFiles={setFiles}
                 />
               </FormControl>
@@ -250,33 +248,6 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                 <Input placeholder="Event location (City and Country)" {...field} 
                 className='input-field'
                 />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="url"
-          render={({ field }) => (
-            <FormItem className='w-full'>
-              <FormControl>
-                <div className='flex-center h-[54px] w-full overflow-hidden
-                rounded-full bg-grey-50 px-4 py-2'>
-                    <Image 
-                    src='/assets/icons/link.svg' 
-                    alt='link'
-                    width={24}
-                    height={24}
-                    />
-                    <Input 
-                    placeholder="URL for any events you are attending etc, your website etc." 
-                    {...field}
-                    className='input-field'
-                    />
-                </div>
-                
               </FormControl>
               <FormMessage />
             </FormItem>
