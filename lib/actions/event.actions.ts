@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 
-import { connectToDatabase } from '@/lib/database'
+import { connectToDatabase } from '../database'
 import { handleError } from '@/lib/utils'
 
 import {
