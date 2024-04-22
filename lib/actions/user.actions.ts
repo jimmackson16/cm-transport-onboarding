@@ -10,7 +10,7 @@ import Event from '../database/models/event.model'
 import { CreateUserParams, UpdateUserParams } from '@/types'
 import { connectToDatabase } from '../database'
 
-export async function createUser(user: CreateUserParams) {
+export const createUser = async (user: CreateUserParams) => {
   try {
     await connectToDatabase()
 
