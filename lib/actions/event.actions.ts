@@ -93,29 +93,32 @@ export async function deleteEvent({ eventId, path }: DeleteEventParams) {
 }
 
 // GET ALL EVENTS
-export async function getAllEvents({ query, limit = 6, page, category }: GetAllEventsParams) {
+export async function getAllEvents({ query, limit = 6, page }: GetAllEventsParams) {
   try {
     await connectToDatabase()
 
-    const titleCondition = query ? { title: { $regex: query, $options: 'i' } } : {}
-    const categoryCondition = category ? await getCategoryByName(category) : null
-    const conditions = {
-      $and: [titleCondition, categoryCondition ? { category: categoryCondition._id } : {}],
-    }
+    const titleOrLocationCondition = query ? {
+      $or: [
+          { title: { $regex: query, $options: 'i' } },
+          { tripLocation: { $regex: query, $options: 'i' } }
+      ]
+  } : {}
 
-    const skipAmount = (Number(page) - 1) * limit
-    const eventsQuery = Event.find(conditions)
-      .sort({ createdAt: 'desc' })
-      .skip(skipAmount)
-      .limit(limit)
+  const skipAmount = (Number(page) - 1) * limit
+  const eventsQuery = Event.find(titleOrLocationCondition)
+    .sort({ createdAt: 'desc' })
+    .skip(skipAmount)
+    .limit(limit)
 
     const events = await populateEvent(eventsQuery)
-    const eventsCount = await Event.countDocuments(conditions)
+
+    const eventsCount = await Event.countDocuments(titleOrLocationCondition)
 
     return {
-      data: JSON.parse(JSON.stringify(events)),
-      totalPages: Math.ceil(eventsCount / limit),
+        data:JSON.parse(JSON.stringify(events)),
+        totalPages: Math.ceil(eventsCount / limit)
     }
+
   } catch (error) {
     handleError(error)
   }

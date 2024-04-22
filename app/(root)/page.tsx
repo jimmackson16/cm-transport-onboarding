@@ -10,11 +10,9 @@ import Link from 'next/link'
 export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || '';
-  const category = (searchParams?.category as string) || '';
 
   const events = await getAllEvents({
     query: searchText,
-    category,
     page,
     limit: 6
   })
@@ -49,7 +47,6 @@ export default async function Home({ searchParams }: SearchParamProps) {
 
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
-          <CategoryFilter />
         </div>
 
         <Collection 
