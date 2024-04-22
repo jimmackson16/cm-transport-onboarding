@@ -40,7 +40,7 @@ export function FileUploader({ ticketUrl, onFieldChange, setFiles }: FileUploade
         <div className="flex-center flex-col py-5 text-grey-500">
           <img src="/assets/icons/upload.svg" width={77} height={77} alt="file upload" />
           <h3 className="mb-2 mt-2">Drag ticket or order confirmation here</h3>
-          <p className="p-medium-12 mb-4">PDF</p>
+          <p className="p-medium-12 mb-4">PDF,JPEG,PNG (Max 4MB)</p>
           <Button type="button" className="rounded-full">
             Select from computer
           </Button>

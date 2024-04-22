@@ -3,9 +3,6 @@
 import { revalidatePath } from 'next/cache'
 
 import { connectToDatabase } from '@/lib/database'
-import Event from '@/lib/database/models/event.model'
-import User from '@/lib/database/models/user.model'
-import Category from '@/lib/database/models/category.model'
 import { handleError } from '@/lib/utils'
 
 import {
@@ -15,6 +12,9 @@ import {
   GetAllEventsParams,
   GetEventsByUserParams,
 } from '@/types'
+import User from '../database/models/user.model'
+import Event from '../database/models/event.model'
+import Category from '../database/models/category.model'
 
 const getCategoryByName = async (name: string) => {
   return Category.findOne({ name: { $regex: name, $options: 'i' } })
@@ -31,7 +31,9 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
     await connectToDatabase()
 
     const seller = await User.findById(userId)
-    if (!seller) throw new Error('Seller')
+    if (!seller) {
+      throw new Error('Seller not found')
+    }
 
     const newEvent = await Event.create({ ...event, location: event.location, seller: userId })
     revalidatePath(path)
