@@ -91,6 +91,7 @@ export type CheckoutOrderParams = {
   eventTitle: string
   eventId: string
   price: string
+  quantity: string
   buyerId: string
 }
 

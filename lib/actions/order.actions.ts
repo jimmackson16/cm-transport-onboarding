@@ -14,6 +14,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
   const price = Number(order.price) * 100;
+  const quantity = Number(order.quantity)
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -26,7 +27,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
               name: order.eventTitle
             }
           },
-          quantity: 1
+          quantity: quantity
         },
       ],
       metadata: {

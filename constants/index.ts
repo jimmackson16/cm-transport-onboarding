@@ -20,6 +20,6 @@ export const eventDefaultValues = {
   startDateTime: new Date(),
   ticketUrl:'',
   price: '',
-  quantity: 1,
+  quantity: '',
   url: '',
 }
