@@ -20,15 +20,13 @@ export type CreateEventParams = {
   userId: string
   event: {
     title: string
-    description: string
+    seatInfo: string
     location: string
-    imageUrl: string
     startDateTime: Date
-    endDateTime: Date
-    categoryId: string
+    ticketUrl?:string
     price: string
-    isFree: boolean
-    url: string
+    quantity: string
+    url?: string
   }
   path: string
 }
@@ -38,15 +36,13 @@ export type UpdateEventParams = {
   event: {
     _id: string
     title: string
-    imageUrl: string
-    description: string
+    seatInfo: string
     location: string
     startDateTime: Date
-    endDateTime: Date
-    categoryId: string
+    ticketUrl?: string
     price: string
-    isFree: boolean
-    url: string
+    quantity: string
+    url?: string
   }
   path: string
 }
@@ -69,20 +65,12 @@ export type GetEventsByUserParams = {
   page: number
 }
 
-export type GetRelatedEventsByCategoryParams = {
-  categoryId: string
-  eventId: string
-  limit?: number
-  page: number | string
-}
 
 export type Event = {
   _id: string
   title: string
-  description: string
+  seatInfo: string
   price: string
-  isFree: boolean
-  imageUrl: string
   location: string
   startDateTime: Date
   endDateTime: Date
@@ -91,10 +79,6 @@ export type Event = {
     _id: string
     firstName: string
     lastName: string
-  }
-  category: {
-    _id: string
-    name: string
   }
 }
 

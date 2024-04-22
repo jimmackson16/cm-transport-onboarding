@@ -4,7 +4,7 @@ export const headerLinks = [
     route: '/',
   },
   {
-    label: 'Create Event',
+    label: 'Create Ticket',
     route: '/events/create',
   },
   {
@@ -17,11 +17,9 @@ export const eventDefaultValues = {
   title: '',
   description: '',
   location: '',
-  imageUrl: '',
   startDateTime: new Date(),
-  endDateTime: new Date(),
-  categoryId: '',
+  ticketUrl:'',
   price: '',
-  isFree: false,
+  quantity: 1,
   url: '',
 }

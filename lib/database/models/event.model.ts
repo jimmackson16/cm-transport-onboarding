@@ -3,32 +3,28 @@ import { Document, Schema, model, models } from "mongoose";
 export interface IEvent extends Document {
   _id: string;
   title: string;
-  description?: string;
-  location?: string;
+  seatInfo: string;
+  location: string;
   createdAt: Date;
-  imageUrl: string;
   startDateTime: Date;
-  endDateTime: Date;
+  ticketUrl:string;
   price: string;
-  isFree: boolean;
+  quantity: number;
   url?: string;
-  category: { _id: string, name: string }
-  organizer: { _id: string, firstName: string, lastName: string }
+  seller: { _id: string, firstName: string, lastName: string }
 }
 
 const EventSchema = new Schema({
   title: { type: String, required: true },
-  description: { type: String },
+  seatInfo: { type: String },
   location: { type: String },
   createdAt: { type: Date, default: Date.now },
-  imageUrl: { type: String, required: true },
   startDateTime: { type: Date, default: Date.now },
-  endDateTime: { type: Date, default: Date.now },
+  ticketUrl: {type: String,required:false},
   price: { type: String },
-  isFree: { type: Boolean, default: false },
+  quantity: {type:Number},
   url: { type: String },
-  category: { type: Schema.Types.ObjectId, ref: 'Category' },
-  organizer: { type: Schema.Types.ObjectId, ref: 'User' },
+  seller: { type: Schema.Types.ObjectId, ref: 'User' },
 })
 
 const Event = models.Event || model('Event', EventSchema);
