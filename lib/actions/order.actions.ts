@@ -26,8 +26,9 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
               name: order.eventTitle
             }
           },
-          quantity: 1
+          quantity:1
         },
+
       ],
       metadata: {
         eventId: order.eventId,
@@ -56,6 +57,7 @@ export const createOrder = async (order: CreateOrderParams) => {
     });
 
     const updatedEvent = await Event.findOneAndUpdate({eventId},{$set:{isPurchased:true}},{new:true})
+    
     return {
       order: JSON.parse(JSON.stringify(newOrder)),
       updatedEvent: JSON.parse(JSON.stringify(updatedEvent))

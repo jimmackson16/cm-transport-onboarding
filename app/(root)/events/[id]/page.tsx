@@ -14,7 +14,7 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
     <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain">
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
 
-        <div className="flex w-full flex-col gap-8 p-5 md:p-10">
+      <div className="flex w-full flex-col gap-8 p-5 md:p-10">
           <div className="flex flex-col gap-6">
             <h2 className='h2-bold'>{event.title}</h2>
 
@@ -62,6 +62,29 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
             <p className="p-medium-16 lg:p-regular-18 truncate text-primary-500">Quantity: {event.quantity}</p>
           </div>
         </div>
+
+        <div className="flex w-full flex-col gap-8 p-5 md:p-10">
+        <div className="flex flex-col gap-6">
+            <h2 className='p-bold-20'>Need to know:</h2>
+
+            <div className="flex flex-col gap-3 sm:items-center">
+              <div className="">
+              <p className="p-medium-18">Ticket delivery</p>
+                <p className="">
+                  Some tickets are not available until closer to the date of the show, for this the seller has provided their order confirmation.
+                  This date is likely to be 2 weeks before the concert. These are terms sometimes set by the direct ticket provider.
+                </p>
+              </div>
+              <div className="">
+                <p className="p-medium-18">Payout</p>
+                <p className="">
+                  For safety purposes and to prevent fraud, sellers will not receive a payout until after the concert/event has taken place.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 

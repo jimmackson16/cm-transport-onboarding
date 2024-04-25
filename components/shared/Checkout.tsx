@@ -24,7 +24,6 @@ const Checkout = ({ event, userId }: { event: IEvent, userId: string }) => {
     const order = {
       eventTitle: event.title,
       eventId: event._id,
-      quantity: event.quantity.toString(),
       price: event.price,
       buyerId: userId
     }
@@ -35,7 +34,7 @@ const Checkout = ({ event, userId }: { event: IEvent, userId: string }) => {
   return (
     <form action={onCheckout} method="post">
       <Button type="submit" role="link" size="lg" className="button sm:w-fit">
-        Buy Ticket
+        Buy Ticket(s)
       </Button>
     </form>
   )

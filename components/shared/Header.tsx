@@ -22,19 +22,24 @@ const Header = () => {
           </nav>
         </SignedIn>
 
-        <div className="flex w-32 justify-end gap-3">
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-            <MobileNav />
-          </SignedIn>
-          <SignedOut>
-            <Button asChild className="rounded-full" size="lg">
-              <Link href="/sign-in">
-                Login
-              </Link>
-            </Button>
-          </SignedOut>
-        </div>
+        <div className='flex w-32 justify-end gap-3'>
+                <SignedIn>
+                    <UserButton afterSignOutUrl='/' />
+                    <MobileNav />
+                </SignedIn>
+                <SignedOut>
+                    <Button asChild className='rounded-full bg-primary-500' size='lg'>
+                        <Link href='/sign-in'>
+                            Login
+                        </Link>
+                    </Button>
+                    <Button asChild className='rounded-full bg-primary-500' size='lg'>
+                        <Link href='/sign-up'>
+                            Register
+                        </Link>
+                    </Button>
+                </SignedOut>
+            </div>
       </div>
     </header>
   )

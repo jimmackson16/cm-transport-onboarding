@@ -135,7 +135,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
           render={({ field }) => (
             <FormItem className='w-full'>
               <FormControl>
-              <Input type="number" placeholder="How many do you want to sell" {...field} className="p-regular-16 border-0 bg-grey-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+              <Input type="number" placeholder="Quantity (e.g. if selling 2 set the price to the total you want for both)" {...field} className="input-field" />
 
               </FormControl>
               <FormMessage />
@@ -261,7 +261,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         disabled={form.formState.isSubmitting}
         className='button col-span-2 w-full'
         >
-        {form.formState.isSubmitting ? 'Submitting' : `${type} Trip`}
+        {form.formState.isSubmitting ? 'Submitting' : `${type} Ticket`}
         </Button>
       </form>
     </Form>

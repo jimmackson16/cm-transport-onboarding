@@ -10,11 +10,11 @@ import Checkout from './Checkout'
 const CheckoutButton = ({ event }: { event: IEvent }) => {
   const { user } = useUser();
   const userId = user?.publicMetadata.userId as string;
-  const hasEventFinished = Number(event.quantity) < 1
+  const hasEventFinished = new Date(event.startDateTime) < new Date()
 
   return (
     <div className="flex items-center gap-3">
-      {event.isPurchased ? (
+      {event.isPurchased || hasEventFinished ? (
         <p className="p-2 text-red-400">Sorry, tickets are no longer available.</p>
       ): (
         <>
