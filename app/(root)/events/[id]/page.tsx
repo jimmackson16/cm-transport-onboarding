@@ -21,21 +21,24 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="flex gap-3">
                 <p className="p-bold-20 rounded-full bg-green-500/10 px-5 py-2 text-green-700">
-                  {event.isFree ? 'FREE' : `$${event.price}`}
+                  $ {event.price}
                 </p>
                 <p className="p-medium-16 rounded-full bg-grey-500/10 px-4 py-2.5 text-grey-500">
-                  {event.category.name}
+                  {event.location}
                 </p>
               </div>
 
               <p className="p-medium-18 ml-2 mt-2 sm:mt-0">
                 by{' '}
-                <span className="text-primary-500">{event.seller.firstName} {event.seller.lastName}</span>
+                <span className="text-primary-500">{event.seller.firstName}</span>
               </p>
             </div>
           </div>
 
-          <CheckoutButton event={event} />
+          {!event.isPurchased ? (
+          <CheckoutButton event={event} />):(
+              <p>Ticket(s) sold</p>
+          )}
 
           <div className="flex flex-col gap-5">
             <div className='flex gap-2 md:gap-3'>
@@ -43,7 +46,6 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
               <div className="p-medium-16 lg:p-regular-20 flex flex-wrap items-center">
                 <p>
                   {formatDateTime(event.startDateTime).dateOnly} - {' '}
-                  {formatDateTime(event.startDateTime).timeOnly}
                 </p>
               </div>
             </div>
@@ -57,7 +59,7 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
           <div className="flex flex-col gap-2">
             <p className="p-bold-20 text-grey-600">Seat Info:</p>
             <p className="p-medium-16 lg:p-regular-18">{event.seatInfo}</p>
-            <p className="p-medium-16 lg:p-regular-18 truncate text-primary-500 underline">Quantity: {event.quantity}</p>
+            <p className="p-medium-16 lg:p-regular-18 truncate text-primary-500">Quantity: {event.quantity}</p>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ const CheckoutButton = ({ event }: { event: IEvent }) => {
 
   return (
     <div className="flex items-center gap-3">
-      {hasEventFinished ? (
+      {event.isPurchased ? (
         <p className="p-2 text-red-400">Sorry, tickets are no longer available.</p>
       ): (
         <>
@@ -27,7 +27,7 @@ const CheckoutButton = ({ event }: { event: IEvent }) => {
           </SignedOut>
 
           <SignedIn>
-            <Checkout event={event} userId={userId} />
+            {!event.isPurchased && <Checkout event={event} userId={userId} />}
           </SignedIn>
         </>
       )}

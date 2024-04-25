@@ -10,7 +10,8 @@ export interface IEvent extends Document {
   ticketUrl:string;
   price: string;
   quantity: string;
-  seller: { _id: string, firstName: string, lastName: string }
+  seller: { _id: string, firstName: string, lastName: string };
+  isPurchased:boolean;
 }
 
 const EventSchema = new Schema({
@@ -23,6 +24,7 @@ const EventSchema = new Schema({
   price: { type: String },
   quantity: {type: String },
   seller: { type: Schema.Types.ObjectId, ref: 'User' },
+  isPurchased: {type:Boolean, default:false}
 })
 
 const Event = models.Event || model('Event', EventSchema);

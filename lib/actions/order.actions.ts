@@ -14,7 +14,6 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
   const price = Number(order.price) * 100;
-  const quantity = Number(order.quantity)
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -27,7 +26,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
               name: order.eventTitle
             }
           },
-          quantity: quantity
+          quantity: 1
         },
       ],
       metadata: {
@@ -38,7 +37,6 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
       success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
     });
-
     redirect(session.url!)
   } catch (error) {
     throw error;
@@ -48,6 +46,8 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
 export const createOrder = async (order: CreateOrderParams) => {
   try {
     await connectToDatabase();
+
+    const eventId = order.eventId
     
     const newOrder = await Order.create({
       ...order,
@@ -55,7 +55,11 @@ export const createOrder = async (order: CreateOrderParams) => {
       buyer: order.buyerId,
     });
 
-    return JSON.parse(JSON.stringify(newOrder));
+    const updatedEvent = await Event.findOneAndUpdate({eventId},{$set:{isPurchased:true}},{new:true})
+    return {
+      order: JSON.parse(JSON.stringify(newOrder)),
+      updatedEvent: JSON.parse(JSON.stringify(updatedEvent))
+    }
   } catch (error) {
     handleError(error);
   }
