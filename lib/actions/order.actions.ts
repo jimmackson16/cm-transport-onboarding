@@ -50,17 +50,25 @@ export const createOrder = async (order: CreateOrderParams) => {
 
     const eventId = order.eventId
     
+    console.log(eventId)
+
+    const updatedEvent = await Event.findOneAndUpdate(
+      {eventId},
+     { $set: { isPurchased: true } },
+     {new:true}
+   )
+    
     const newOrder = await Order.create({
       ...order,
       event: order.eventId,
       buyer: order.buyerId,
     });
 
-    const updatedEvent = await Event.findOneAndUpdate({eventId},{$set:{isPurchased:true}},{new:true})
+    console.log(updatedEvent)
     
     return {
       order: JSON.parse(JSON.stringify(newOrder)),
-      updatedEvent: JSON.parse(JSON.stringify(updatedEvent))
+      updated: JSON.parse(JSON.stringify(updatedEvent))
     }
   } catch (error) {
     handleError(error);
@@ -140,7 +148,7 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
         path: 'event',
         model: Event,
         populate: {
-          path: 'organizer',
+          path: 'seller',
           model: User,
           select: '_id firstName lastName',
         },
