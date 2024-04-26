@@ -20,7 +20,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
   return (
     <div>
-      <div className="group relative flex w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg">
+      <div className="group relative flex w-[400px] max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg">
 
 {isEventCreator && !hidePrice && (
   <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
