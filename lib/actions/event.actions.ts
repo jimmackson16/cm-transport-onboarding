@@ -102,12 +102,15 @@ export async function getAllEvents({ query, limit = 6, page }: GetAllEventsParam
     const titleOrLocationCondition = query ? {
       $or: [
           { title: { $regex: query, $options: 'i' } },
-          { tripLocation: { $regex: query, $options: 'i' } }
+          { location: { $regex: query, $options: 'i' } },
       ]
-  } : {}
+    } : {}
 
   const skipAmount = (Number(page) - 1) * limit
-  const eventsQuery = Event.find(titleOrLocationCondition)
+  const eventsQuery = Event.find({
+    ...titleOrLocationCondition,
+    isPurchased:false
+  })
     .sort({ createdAt: 'desc' })
     .skip(skipAmount)
     .limit(limit)

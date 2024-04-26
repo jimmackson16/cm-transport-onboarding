@@ -1,5 +1,6 @@
 import CheckoutButton from '@/components/shared/CheckoutButton';
 import Collection from '@/components/shared/Collection';
+import UpdatePurchasedButton from '@/components/shared/UpdatePurchasedButton';
 import { getEventById} from '@/lib/actions/event.actions'
 import { formatDateTime } from '@/lib/utils';
 import { SearchParamProps } from '@/types'

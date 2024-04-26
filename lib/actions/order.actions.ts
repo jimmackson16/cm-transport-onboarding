@@ -44,32 +44,41 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
   }
 }
 
+
 export const createOrder = async (order: CreateOrderParams) => {
   try {
     await connectToDatabase();
 
-    const eventId = order.eventId
-    
-    console.log(eventId)
+    const eventId = order.eventId.toString()
 
-    const updatedEvent = await Event.findOneAndUpdate(
-      {eventId},
-     { $set: { isPurchased: true } },
-     {new:true}
-   )
+    const event = await Event.findById(eventId)
+
+    if (!event) throw new Error(`Event not found`)
     
     const newOrder = await Order.create({
       ...order,
       event: order.eventId,
       buyer: order.buyerId,
     });
+  
+    return JSON.parse(JSON.stringify(newOrder))
+  } catch (error) {
+    handleError(error);
+  }
+}
 
-    console.log(updatedEvent)
-    
-    return {
-      order: JSON.parse(JSON.stringify(newOrder)),
-      updated: JSON.parse(JSON.stringify(updatedEvent))
-    }
+export async function updateEventAfterOrder(eventId:string){
+  try {
+    await connectToDatabase()
+
+    const updatedEvent = await Event.findOneAndUpdate(
+      {_id:eventId},
+     {$set: { isPurchased: true } },
+     {new:true}
+   )
+   
+   console.log(updatedEvent)
+   return JSON.parse(JSON.stringify(updatedEvent))
   } catch (error) {
     handleError(error);
   }
