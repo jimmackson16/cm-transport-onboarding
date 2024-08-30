@@ -2,18 +2,12 @@ export const headerLinks = [
   {
     label: 'Home',
     route: '/',
+  },
+  {
+    label: 'About',
+    route: '/about',
   }
 ]
-
-// export const eventDefaultValues = {
-//   title: '',
-//   description: '',
-//   location: '',
-//   startDateTime: new Date(),
-//   ticketUrl:'',
-//   price: '',
-//   quantity: '',
-// }
 
 export const onboardingDefaultValues = {
   firstName: '',
