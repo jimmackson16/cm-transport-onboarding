@@ -1,11 +1,29 @@
 import * as z from "zod"
 
-export const eventFormSchema = z.object({
-  title: z.string().min(3, 'Title must be at least 3 characters'),
-  seatInfo: z.string().min(3, 'Description must be at least 3 characters').max(400, 'Description must be less than 400 characters'),
-  location: z.string().min(3, 'Location must be at least 3 characters').max(400, 'Location must be less than 400 characters'),
-  startDateTime: z.date(),
-  ticketUrl: z.string(),
-  price: z.string(),
-  quantity: z.string(),
+export const employeeFormSchema = z.object({
+  firstName: z.string().min(2, 'Enter first name'),
+  lastName: z.string().min(2, 'Enter last name'),
+  addressOne: z.string().min(3, 'Enter address'),
+  city: z.string().min(3, 'Enter city'),
+  postcode: z.string().min(3, 'Enter postcode'),
+  phoneNumber: z.string().min(3, 'Enter phone number'),
+  dateOfBirth: z.date(),
+  niNumber: z.string().min(2, 'Enter your NI number').max(9),
+  utrNumber: z.string(),
+  desiredStart: z.date(),
+  passUrl:z.string(),
+  certificateUrl: z.string(),
 })
+
+// firstName: '',
+// lastName: '',
+// addressOne: '',
+// city:'',
+// postcode:'',
+// phoneNumber:'',
+// dateOfBirth:'',
+// niNumber:'',
+// utrNumber:'',
+// desiredStart: new Date(),
+// passUrl:'',
+// certificateUrl:'',

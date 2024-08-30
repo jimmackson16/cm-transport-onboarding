@@ -9,12 +9,12 @@ const Footer = () => {
           <Image 
             src="/assets/images/logo.png"
             alt="logo"
-            width={128}
-            height={38}
+            width={160}
+            height={70}
           />
         </Link>
 
-        <p>2024 FaceValueTickets. All Rights reserved.</p>
+        <p>2024 CM Transportation Services Limited. All Rights reserved.</p>
       </div>
     </footer>
   )

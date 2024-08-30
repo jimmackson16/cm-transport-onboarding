@@ -30,6 +30,37 @@ export type CreateEventParams = {
   path: string
 }
 
+export type CreateEmployeeParams = {
+  employee: {
+    firstName: string
+    lastName: string
+    addressOne: string
+    city: string
+    postcode: string
+    phoneNumber: string
+    dateOfBirth: Date
+    niNumber: string
+    utrNumber?:string
+    desiredStart: Date
+    passUrl: string
+    certificateUrl?: string
+  }
+  path: string
+}
+
+// firstName: '',
+// lastName: '',
+// addressOne: '',
+// city:'',
+// postcode:'',
+// phoneNumber:'',
+// dateOfBirth:'',
+// niNumber:'',
+// utrNumber:'',
+// desiredStart: new Date(),
+// passUrl:'',
+// certificateUrl:'',
+
 export type UpdateEventParams = {
   userId: string
   event: {
